@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <title>update ticket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+  <style>body { background-color: black;   }</style>
+</head>
+<body  >
+ <section class="container my-2 bg-dark w-50 text-light p-2" >
+
+    <form action="/update" method="post" th:object="${ticket}" class="row g-3 p-3" style="box-shadow: 0 0 100px rgba(31, 81, 255, 0.8);">
+        <div style="text-align: center;">
+            <h2 style="color: lime;">Update Ticket</h2>
+            <br>
+
+            <label for="id" class="form-label" style="margin-right: 10px;">Ticket id</label>
+            <input type="text" th:name="id" th:field="${ticket.id}" readonly="readonly" style="width: 80px; background-color: lightgreen;"/>
+
+            <label for="creationDate" class="form-label" style="margin-left: 20px; margin-right: 8px;">Created</label>
+            <input type="text" th:name="creationDate" th:field="${ticket.creationDate}" readonly="readonly" style="width: 165px; background-color: lightgreen;"/>
+        </div>
+
+        <div class="col-md-6">
+            <label for="phoneNumber" class="form-label">phone Number</label>
+            <input type="text" th:name="phoneNumber" class="form-control"
+                   th:value="${ticket.phoneNumber}" id="phoneNumber" />
+        </div>
+        <div class="col-md-6">
+            <label for="city" class="form-label">address / city</label>
+            <input type="text" th:name="city"  class="form-control"
+                   th:value="${ticket.city}" id="city" />
+        </div>
+        <div class="col-md-6">
+            <label for="fullName" class="form-label">full Name</label>
+            <input type="text" th:name="fullName"  class="form-control"
+                   th:value="${ticket.fullName}" id="fullName" />
+        </div>
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" th:name="email" class="form-control"
+                   th:value="${ticket.email}" id="email" />
+        </div>
+        <div class="col-md-6">
+            <label for="AFM" class="form-label">AFM</label>
+            <input type="text" class="form-control" th:name="AFM"
+                   th:value="${ticket.AFM}" id="AFM" />
+        </div>
+        <div class="col-md-6">
+            <label for="customerId" class="form-label">customer Id</label>
+            <input type="text" class="form-control" th:name="customerId"
+                   th:value="${ticket.customerId}" id="customerId" />
+        </div>
+        <div class="col-md-6">
+            <label for="ticketState" class="form-label">ticket State</label>
+            <input type="text" class="form-control" th:name="ticketState"
+                   th:value="${ticket.ticketState}" id="ticketState" />
+        </div>
+        <div class="col-md-6">
+            <label for="serialNumber" class="form-label">serial Number</label>
+            <input type="text" class="form-control" th:name="serialNumber"
+                   th:value="${ticket.serialNumber}" id="serialNumber" />
+        </div>
+
+        <div class="col-md-6">
+            <label for="userName" class="form-label">user name</label>
+            <input type="text" class="form-control"
+                   th:name="userName" th:value="${ticket.userName}" id="userName" />
+        </div>
+
+        <div class="col-md-6">
+            <label for="subject" class="form-label">subject</label>
+            <input type="text" class="form-control"
+                   th:name="subject" th:value="${ticket.subject}" id="subject" />
+        </div>
+
+
+        <div class="col-md-4">
+            <label for="ticketSource" class="form-label">ticket Source</label>
+            <select id="ticketSource" th:field="*{ticketSource}" class="form-select" name="ticketSource">
+                <option  th:value="' '"  selected   th:text="${ticket.ticketSource}"> </option>
+                <option th:value="'Phone'" th:text="${'Phone'}"></option>
+                <option th:value="'Email'" th:text="${'Email'}"></option>
+                <option th:value="'Other'" th:text="${'Other'}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="department" class="form-label">department</label>
+            <select id="department" th:field="*{department}" class="form-select" name="department">
+                <option  th:value="'Fdd'"  th:text="${ticket.department}"> </option>
+                <option th:value="'acs department'" th:text="${'acs department'}"></option>
+                <option th:value="'other'" th:text="${'other'}"></option>
+
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="helpTopic" class="form-label">help Topic</label>
+            <select id="helpTopic" th:field="*{helpTopic}" class="form-select" name="helpTopic">
+                <option  th:value="'Fdd'"  th:text="${ticket.helpTopic}"> </option>
+                <option th:value="'support'" th:text="${'support'}"></option>
+                <option th:value="'billing'" th:text="${'billing'}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="priority" class="form-label">priority</label>
+            <select id="priority" th:field="*{priority}" class="form-select" name="priority">
+                <option  th:value="'Fdd'"  th:text="${ticket.priority}"> </option>
+                <option th:value="'low'" th:text="${'low'}"></option>
+                <option th:value="'normal'" th:text="${'normal'}"></option>
+                <option th:value="'urgent'" th:text="${'urgent'}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="deviceModel" class="form-label">device Model</label>
+            <select id="deviceModel" th:field="*{deviceModel}" class="form-select" name="deviceModel">
+                <option  th:value="'t '"  th:text="${ticket.deviceModel}"> </option>
+                <option th:value="'EF 550 R'" th:text="${'EF 550 R'}"></option>
+                <option th:value="'SPP R310 '" th:text="${'SPP R310'}"></option>
+                <option th:value="'EF 500 1slot cradle'" th:text="${'EF 500 1slot cradle'}"></option>
+                <option th:value="'EF 500 4slot cradle'" th:text="${'EF 500 4slot cradle'}"></option>
+                <option th:value="'Xiaomi Redmi9 '" th:text="${'Xiaomi Redmi9'}"></option>
+                <option th:value="'EF500 R'" th:text="${'EF500 R'}"></option>
+                <option th:value="'EF500 R 1slot cradle'" th:text="${'EF500 R 1slot cradle'}"></option>
+                <option th:value="'EF500 R 4slot cradle'" th:text="${'EF500 R 4slot cradle'}"></option>
+
+            </select>
+        </div>
+
+
+        <div class="col-md-4">
+            <label for="category" class="form-label">category</label>
+            <select id="category" th:field="*{category}" class="form-select" name="category">
+                <option  th:value="'Fdd'"  th:text="${ticket.category}"> </option>
+                <option th:value="'hardware issue'" th:text="${'hardware issue'}"></option>
+                <option th:value="'software issue'" th:text="${'software issue'}"></option>
+                <option th:value="'network - communications'" th:text="${'network - communications'}"></option>
+                <option th:value="'application properties'" th:text="${'application properties'}"></option>
+                <option th:value="'hardware properties'" th:text="${'hardware properties'}"></option>
+                <option th:value="'hardware misuse'" th:text="${'hardware misuse'}"></option>
+                <option th:value="'software misuse'" th:text="${'software misuse'}"></option>
+                <option th:value="'general info software/hardware'" th:text="${'general info software/hardware'}"></option>
+                <option th:value="'caused damage'" th:text="${'caused damage'}"></option>
+                <option th:value="'theft / loss'" th:text="${'theft / loss'}"></option>
+
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="assignedTo" class="form-label">assign To</label>
+            <select id="assignedTo" th:field="*{assignedTo}" class="form-select" name="assignedTo">
+                <option  th:value="'Fdd'"  th:text="${ticket.assignedTo}"> </option>
+                <option th:value="'Tsaloukidis Al'" th:text="${'Tsaloukidis Al'}"></option>
+                <option th:value="'Psaras B'" th:text="${'Psaras B'}"></option>
+                <option th:value="'Giannetakis St'" th:text="${'Giannetakis St'}"></option>
+                <option th:value="'Maistrou M'" th:text="${'Maistrou M'}"></option>
+                <option th:value="'Kritikos Sp'" th:text="${'Kritikos Sp'}"></option>
+                <option th:value="'Tzouvelis St'" th:text="${'Tzouvelis St'}"></option>
+
+            </select>
+        </div>
+
+
+
+        <div>
+            <div class="col-md-10">
+                <label for="solution" class="form-label">solution</label>
+                <textarea class="form-control" th:text="${ticket.solution}" id="solution" name="solution" rows="3" readonly></textarea>
+                <button type="button" onclick="appendComment('solution') " style="background-color: green; color: white; margin-top: 10px">Add Comment</button>
+            </div>
+
+            <div class="col-md-10">
+                <label for="solutionType" class="form-label" style=" margin-top: 20px">solution Type</label>
+                <textarea class="form-control" th:text="${ticket.solutionType}" id="solutionType" name="solutionType" rows="3" readonly></textarea>
+                <button type="button" onclick="appendComment('solutionType')" style="background-color: green; color: white; margin-top: 10px" >Add Comment</button>
+            </div>
+        </div>
+
+        <script>
+    function appendComment(fieldId) {
+        var textarea = document.getElementById(fieldId);
+        var newComment = prompt("Enter new comment:");
+
+        if (newComment !== null) {
+            textarea.value += "\n" + newComment;
+        }
+    }
+</script>
+
+<!--        <div class="col-12">-->
+<!--            <div class="form-check form-check-inline">-->
+<!--                <input class="form-check-input" type="checkbox" id="gridCheck">-->
+<!--                <label class="form-check-label" for="gridCheck">Check me out </label></div>-->
+<!--            <div class="form-check form-check-inline">-->
+<!--                <input class="form-check-input" type="checkbox" id="gridCheck1">-->
+<!--                <label class="form-check-label" for="gridCheck">Check me out </label></div>-->
+<!--            <div class="form-check form-check-inline">-->
+<!--                <input class="form-check-input" type="checkbox" id="gridCheck2">-->
+<!--                <label class="form-check-label" for="gridCheck">Check me out </label></div>-->
+<!--        </div>-->
+        <div class="col-12">
+            <button type="submit" class="btn btn-success" style="margin-right: 50px;">Update ticket</button>
+
+            <a th:href="@{/opentickets}" class="btn btn-primary mb-2" style="margin-top: 5px; margin-left: 10px;">Go to Open tickets</a>
+
+            <a th:href="@{/closedtickets}" class="btn btn-primary mb-2" style="margin-top: 5px; margin-left: 10px;">Go to Closed tickets</a>
+            <a th:href="@{/home}" class="btn btn-primary mb-2" style="margin-top: 5px; margin-left: 10px;">home page</a>
+
+        </div>
+    </form>
+
+</section>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>open tickets</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+    <style>
+    .lime-text { color: lime; }
+</style>
+</head>
+<body style="background-color: black;">
+<div class="d-flex justify-content-left">
+    <p style="color: pink;margin-left:50px">user: <span th:text="${username}" style="color: lime"></span></p>
+    <p style="color: pink;margin-left:50px">id: <span th:text="${userid}" style="color: lime"></span></p>
+</div>
+
+<div class="container-fluid bg-dark text-light py-3">
+    <header class="text-center">
+        <h1 class="display-6 lime-text">Open Tickets</h1>
+    </header>
+</div>
+
+    <div class="form-group mb-2" style="display: flex; align-items: center; margin-left: 150px;">
+        <a th:href="@{/home}" class="btn btn-success" style="margin-top: 0px; margin-right: 60px;">Home</a>
+       <a th:href="@{/closedtickets}" class="btn btn-primary mb-2" style="margin-top: 5px; margin-left: 10px;">Go to Closed tickets</a>
+        <form th:action="@{/opentickets}" method="get">
+            <label for="search" style="color:lime;margin-left:25px">Global Search:</label>
+            <input type="text" id="search" name="search" th:value="${search}" />
+            <button type="submit">Search</button>
+        </form>
+
+        <form th:action="@{/opentickets/export}" method="post" style="margin-left:350px">
+            <button type="submit" class="btn btn-warning">Export to csv</button>
+        </form>
+        <a th:href="@{/opentickets/export/txt}" class="btn btn-primary mb-2" style="margin-top: 5px; margin-left: 10px;">Export to txt</a>
+    </div>
+
+<section class="container-fluid d-flex flex-column  align-items-center  justify-content-center
+  my-2    bg-dark text-light    p-2">
+
+    <!-- Product Table -->
+    <table border="1" class="table table-dark">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Phone Number</th>
+            <th>Address / City</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th  style="color: lime;">Ticket State</th>
+            <th>Serial Number</th>
+            <th>User Name</th>
+            <th>Subject</th>
+            <th>Ticket Source</th>
+            <th>Department</th>
+            <th>Help Topic</th>
+            <th>Priority</th>
+            <th>Device Model</th>
+            <th>Category</th>
+            <th>Assigned To</th>
+            <th>Created</th>
+            <th>Update</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${ticket}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.phoneNumber}"></td>
+            <td th:text="${ticket.city}"></td>
+            <td th:text="${ticket.fullName}"></td>
+            <td th:text="${ticket.email}"></td>
+            <td th:text="${ticket.ticketState}"
+                th:style="${ticket.ticketState == 1 ? 'color: lime;' : ''}"></td>
+
+            <td th:text="${ticket.serialNumber}"></td>
+            <td th:text="${ticket.userName}"></td>
+            <td th:text="${ticket.subject}"></td>
+            <td th:text="${ticket.ticketSource}"></td>
+            <td th:text="${ticket.department}"></td>
+            <td th:text="${ticket.helpTopic}"></td>
+            <td th:text="${ticket.priority}"></td>
+            <td th:text="${ticket.deviceModel}"></td>
+            <td th:text="${ticket.category}"></td>
+            <td th:text="${ticket.assignedTo}"></td>
+            <td th:text="${ticket.creationDate}"></td>
+
+            <td>
+                <!-- Add action buttons as needed -->
+                <a th:href="@{'/updateTicket/' + ${ticket.id}}" target="_blank" class="btn btn-info">Update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>acs customer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <style>body { background-color: black;   }</style>
+</head>
+<body>
+<div th:if="${param.success}" class="d-flex justify-content-center align-items-center">
+    <div class="alex alert-info" style="font-size: 20px;font-weight: bold;">merchant details registered successfully!</div>
+</div>
+<div class="container-fluid bg-dark text-light py-3">
+    <header class="text-center">
+        <h1 class="display-6">acs merchant registration form</h1>
+    </header>
+</div>
+<section class="container my-2 bg-dark w-50 text-light p-2" >
+    <form action="/registration/acsCustomer" method="post" th:object="${acsCustomer}"  class="row g-3 p-3"
+          style="box-shadow: 0 0 100px rgba(31, 81, 255, 0.8);"   >
+        <h2 style="color: lime">Enter  registration details </h2>
+        <div class="col-md-6">
+            <label for="acsCustomerId" class="form-label">customer id</label>
+            <input type="text" class="form-control" name="acsCustomerId" th:field="*{acsCustomerId}"  id="acsCustomerId" >
+        </div>
+        <div class="col-md-6">
+            <label for="acsClientName" class="form-label">ACS Client Name</label>
+            <input type="text" class="form-control" name="acsClientName" th:field="*{acsClientName}"  id="acsClientName" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="acsAFM" class="form-label">acs AFM</label>
+            <input type="text" class="form-control" th:field="*{acsAFM}" placeholder="afm" id="acsAFM" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="acsCity" class="form-label">city</label>
+            <input type="text" class="form-control" th:field="*{acsCity}" placeholder="acs City" id="acsCity" required>
+        </div>
+
+
+        <div class="col-md-6">
+            <label for="acsAddress" class="form-label">address</label>
+            <input type="text" class="form-control" th:field="*{acsAddress}" id="acsAddress" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="acsEmail" class="form-label">email</label>
+            <input type="email" class="form-control" th:field="*{acsEmail}" id="acsEmail"  >
+        </div>
+        <div class="col-md-6">
+            <label for="acsPhoneNumber" class="form-label">phone num</label>
+            <input type="text" class="form-control" th:field="*{acsPhoneNumber}" id="acsPhoneNumber" required>
+        </div>
+
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary" style="margin-right: 20px;">Save Merchant</button>
+            <a th:href="@{/home}" class="btn btn-primary mb-2" style="margin-top: 5px; margin-left: 20px;">home page</a>
+            <a th:href="@{/acs_list}" class="btn btn-success mb-2" style="margin-top: 5px; margin-left: 20px;">Acs merchant list</a>
+            <a th:href="@{/logout}" class="btn btn-warning" style="margin-left: 50px;margin-bottom:5px">Logout</a>
+
+        </div>
+
+
+
+    </form>
+
+</section>
+
+
+
+
+</body>
+</html>

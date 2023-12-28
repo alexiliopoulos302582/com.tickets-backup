@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>acs list</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+  <style>
+    .lime-text { color: lime; }
+    </style>
+</head>
+
+<body style="background-color: black;">
+
+<div th:if="${param.success}" class="d-flex justify-content-center align-items-center">
+  <div class="alex alert-info" style="font-size: 20px;font-weight: bold;">merchant details registered successfully!</div>
+</div>
+
+<div th:if="${param.success2}" class="d-flex justify-content-center align-items-center">
+  <div class="alex alert-info" style="font-size: 20px;font-weight: bold;">merchant details updated successfully!</div>
+</div>
+
+<!--<div class="d-flex justify-content-left">-->
+<!--  <p style="color: pink;margin-left:50px">user: <span th:text="${username}" style="color: lime"></span></p>-->
+<!--  <p style="color: pink;margin-left:50px">id: <span th:text="${userid}" style="color: lime"></span></p>-->
+<!--</div>-->
+<div class="container-fluid bg-dark text-light py-3">
+  <header class="text-center">
+    <h1 class="display-6 lime-text">Acs Merchant List</h1>
+  </header>
+</div>
+
+
+  <form th:action="@{/test}" method="get">
+    <label for="search" style="margin-left:20px; color: lime"> Global Search: </label>
+    <input style="margin-top:3px" type="text" id="search" name="search"  th:value="${search}"/>
+    <button style="margin-top:-6px" type="submit" class="btn btn-warning btn-sm">Search</button>
+  </form>
+
+
+
+</div>
+
+<section class="container-fluid d-flex flex-column align-items-center
+ justify-content-center my-2 bg-dark text-light p-2">
+  <!-- Table -->
+  <table border="1" class="table table-dark">
+    <thead>
+    <tr style="color:lime">
+      <th>ID</th>
+      <th>customer id</th>
+      <th>ACS Client Name</th>
+      <th>phone num</th>
+      <th>city</th>
+      <th>address</th>
+      <th>email</th>
+      <th>acs AFM</th>
+
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="x : ${acsCustomer}">
+      <td th:text="${x.id}"></td>
+      <td th:text="${x.acsCustomerId}"></td>
+      <td th:text="${x.acsClientName}"></td>
+      <td style="color:lime" th:text="${x.acsPhoneNumber}"></td>
+      <td th:text="${x.acsCity}"></td>
+      <td th:text="${x.acsAddress}"></td>
+      <td th:text="${x.acsEmail}"></td>
+      <td th:text="${x.acsAFM}"></td>
+
+      <td>
+        <a th:href="@{'/acs_list/' + ${x.id}}" target="_blank" class="btn btn-info btn-sm">Update</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+</body>
+</html>
